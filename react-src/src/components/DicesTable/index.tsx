@@ -1,9 +1,6 @@
 import { useDice } from '@/hooks/useDice'
 import { DiceButton } from '../DiceButton'
 import { useEffect, useState } from 'react'
-import { IconButton } from '../IconButton'
-import { Play, RotateCcw } from 'lucide-react'
-import { Button } from '../ui/button'
 
 const initialDices = {
   4: 0,
@@ -19,6 +16,7 @@ export const DicesTable: React.FC = () => {
   const { Dice } = useDice('dice-container')
 
   const [allDices, setAllDices] = useState(initialDices)
+  const [color, setColor] = useState<string>('#000000')
 
   const diceText = Array.from(Object.entries(allDices))
     .filter(([, amount]) => amount > 0)
@@ -31,9 +29,7 @@ export const DicesTable: React.FC = () => {
   }, [Dice])
 
   return (
-    <div className='flex flex-col items-center justify-center'>
-      
-
+    <div className='relative flex flex-col items-center justify-center'>
       <div className='relative'>
         <img
           src='/render.png'
@@ -46,7 +42,7 @@ export const DicesTable: React.FC = () => {
         ></div>
       </div>
 
-      <div className='flex'>
+      <div className='flex items-center justify-center'>
         {Array.from(Object.entries(allDices)).map(([sides]) => (
           <DiceButton
             key={sides}
@@ -58,11 +54,26 @@ export const DicesTable: React.FC = () => {
             }
           />
         ))}
+        <input
+          type='color'
+          className='w-4 border-none bg-transparent'
+          value={color}
+          onChange={(event) => setColor(event.target.value)}
+        />
       </div>
-
       <div className='grid grid-cols-2 gap-4 w-full mt-4'>
-        <button className='p-4 m-w-full bg-slate-700 rounded flex items-center justify-center hover:bg-green-500 hover:bg-opacity-40 transition-colors' onClick={() => Dice.roll(diceText)}>Rolar</button>
-        <button className='p-4 m-w-full bg-slate-700 rounded flex items-center justify-center hover:bg-red-500 hover:bg-opacity-40 transition-colors' onClick={() => setAllDices(initialDices)}>Limpar</button>
+        <button
+          className='p-4 m-w-full bg-slate-700 rounded flex items-center justify-center hover:bg-green-500 hover:bg-opacity-40 transition-colors'
+          onClick={() => Dice.roll(diceText, { themeColor: color })}
+        >
+          Rolar
+        </button>
+        <button
+          className='p-4 m-w-full bg-slate-700 rounded flex items-center justify-center hover:bg-red-500 hover:bg-opacity-40 transition-colors'
+          onClick={() => setAllDices(initialDices)}
+        >
+          Limpar
+        </button>
       </div>
     </div>
   )

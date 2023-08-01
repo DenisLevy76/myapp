@@ -32,7 +32,7 @@ export const DiceButton: React.FC<IDiceButtonProps> = ({
     >
       <img
         src={image}
-        className='w-14'
+        className='w-12'
         alt=''
       />
       {amount > 0 && (

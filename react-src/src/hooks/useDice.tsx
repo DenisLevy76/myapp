@@ -9,6 +9,7 @@ export const useDice = (targetId: string) => {
       new DiceBox(`#${targetId}`, {
         assetPath: '/assets/',
         id: "dice-canvas",
+        theme: 'rock',
       })
     )
 
