@@ -8,19 +8,21 @@
   "enableNativeAPI": true,
   "nativeAllowList": [
     "app.*",
-    "window.*"
+    "window.*",
+    "storage.getData",
+    "storage.setData"
   ],
   "modes": {
     "window": {
-      "title": "Iniciativa",
-      "minWidth": 500,
+      "title": "master tools",
+      "minWidth": 660,
       "minHeight": 800,
       "icon": "/react-src/public/icon.png",
       "center": true
     }
   },
   "cli": {
-    "binaryName": "Iniciativa",
+    "binaryName": "master tools",
     "resourcesPath": "/react-src/dist/",
     "extensionsPath": "/extensions/",
     "binaryVersion": "4.10.0",

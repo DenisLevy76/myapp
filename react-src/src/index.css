@@ -96,7 +96,15 @@
 }
 
 #dice-canvas {
-  width: 100%;
-  height: 100%;
+  width: 345px;
+  height: 545px;
   background-color: transparent;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateY(-50%) translateX(-50%);
+}
+
+#results div {
+  @apply bg-slate-500 bg-opacity-60
 }

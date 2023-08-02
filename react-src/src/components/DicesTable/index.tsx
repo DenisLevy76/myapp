@@ -1,6 +1,7 @@
 import { useDice } from '@/hooks/useDice'
 import { DiceButton } from '../DiceButton'
 import { useEffect, useState } from 'react'
+import { storage } from '@neutralinojs/lib'
 
 const initialDices = {
   4: 0,
@@ -13,7 +14,8 @@ const initialDices = {
 }
 
 export const DicesTable: React.FC = () => {
-  const { Dice } = useDice('dice-container')
+  const { Dice, Display } = useDice('dice')
+  console.log(Display)
 
   const [allDices, setAllDices] = useState(initialDices)
   const [color, setColor] = useState<string>('#000000')
@@ -22,11 +24,28 @@ export const DicesTable: React.FC = () => {
     .filter(([, amount]) => amount > 0)
     .map(([sides, amount]) => `${amount}d${sides}`)
 
-  useEffect(() => {
-    if (Dice) {
-      Dice.init()
+  if (Dice) {
+    Dice.onRollComplete = (results) => {
+      Display.showResults(results)
+      console.log(results)
     }
-  }, [Dice])
+  }
+
+  const getColors = async () => {
+    try {
+      const storageDiceColor = await storage.getData('dicecolor')
+
+      if (storageDiceColor) {
+        setColor(storageDiceColor)
+      }
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
+  useEffect(() => {
+    getColors()
+  }, [])
 
   return (
     <div className='relative flex flex-col items-center justify-center'>
@@ -37,12 +56,13 @@ export const DicesTable: React.FC = () => {
           className='w-[400px]'
         />
         <div
-          id='dice-container'
-          className='absolute top-0 left-0 w-full h-full p-8'
+          id='results'
+          className='absolute w-full bottom-16 left-0 text-black text-sm leading-relaxed'
         ></div>
+        <div id='dice' />
       </div>
 
-      <div className='flex items-center justify-center'>
+      <div className='flex items-center justify-center py-4'>
         {Array.from(Object.entries(allDices)).map(([sides]) => (
           <DiceButton
             key={sides}
@@ -58,13 +78,19 @@ export const DicesTable: React.FC = () => {
           type='color'
           className='w-4 border-none bg-transparent'
           value={color}
-          onChange={(event) => setColor(event.target.value)}
+          onChange={async (event) => {
+            setColor(event.target.value)
+            await storage.setData('dicecolor', event.target.value)
+          }}
         />
       </div>
-      <div className='grid grid-cols-2 gap-4 w-full mt-4'>
+      <div className='grid grid-cols-2 gap-4 w-full'>
         <button
           className='p-4 m-w-full bg-slate-700 rounded flex items-center justify-center hover:bg-green-500 hover:bg-opacity-40 transition-colors'
-          onClick={() => Dice.roll(diceText, { themeColor: color })}
+          onClick={() => {
+            Dice.roll(diceText, { themeColor: color })
+            Display.clear()
+          }}
         >
           Rolar
         </button>

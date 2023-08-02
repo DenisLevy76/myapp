@@ -107,7 +107,7 @@ export const Initiative: React.FC = () => {
                 ref={provided.innerRef}
                 className='flex flex-col gap-2 max-h-[400px] overflow-auto'
               >
-                {characters.map(({ name, id }, index) => (
+                {characters.length > 0 ? characters.map(({ name, id }, index) => (
                   <Draggable
                     draggableId={name}
                     key={name}
@@ -133,7 +133,9 @@ export const Initiative: React.FC = () => {
                       </li>
                     )}
                   </Draggable>
-                ))}
+                )) : (
+                  <p className='text-center text-sm text-gray-600'>Nenhuma iniciativa</p>
+                )}
                 {provided.placeholder}
               </ul>
             )}
