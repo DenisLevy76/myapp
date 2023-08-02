@@ -15,7 +15,6 @@ const initialDices = {
 
 export const DicesTable: React.FC = () => {
   const { Dice, Display } = useDice('dice')
-  console.log(Display)
 
   const [allDices, setAllDices] = useState(initialDices)
   const [color, setColor] = useState<string>('#000000')
@@ -27,7 +26,6 @@ export const DicesTable: React.FC = () => {
   if (Dice) {
     Dice.onRollComplete = (results) => {
       Display.showResults(results)
-      console.log(results)
     }
   }
 
