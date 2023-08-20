@@ -2,32 +2,3 @@
 # yarn lockfile v1
 
 
-"@3d-dice/dice-parser-interface@^0.2.0":
-  version "0.2.1"
-  resolved "https://registry.yarnpkg.com/@3d-dice/dice-parser-interface/-/dice-parser-interface-0.2.1.tgz#5646b2edd811dea6c989c723152bd50af0f8d220"
-  integrity sha512-04fJt8FYtbPnzVt0Pi2Ow3vweN0t/lc+tkDDIG4bq9QkaIw/zD1zdLZirXtE8LFffJR3xXFh8PgflSAJMGoy4Q==
-  dependencies:
-    "@3d-dice/dice-roller-parser" "^0.2.6"
-
-"@3d-dice/dice-roller-parser@^0.2.6":
-  version "0.2.6"
-  resolved "https://registry.yarnpkg.com/@3d-dice/dice-roller-parser/-/dice-roller-parser-0.2.6.tgz#bae45daf24390e82eae504b511769d5c0dac0403"
-  integrity sha512-9dMSX0bqKZ5BQ+HABE4c4ZY1/VPUqtQd+gXKAHPMcFbY3cCMOPy327ZQ/LHdptS7VNZCGPriybIQrg7efYIQEw==
-
-"@3d-dice/dice-ui@^0.4.3":
-  version "0.4.3"
-  resolved "https://registry.yarnpkg.com/@3d-dice/dice-ui/-/dice-ui-0.4.3.tgz#dd9315c64f50cfbd7dc5907b37aecd5350e38d29"
-  integrity sha512-+hdWBjCKu9sdMREoHeO/L2D7hX4qOcBauJbPlNuM7GuEKbwjrtvgKIjnTgvE0ZWoyDt/M1MeMluhOJqV7A8nog==
-  dependencies:
-    "@3d-dice/dice-parser-interface" "^0.2.0"
-    dat.gui "^0.7.9"
-
-"@neutralinojs/lib@^3.11.0":
-  version "3.11.0"
-  resolved "https://registry.yarnpkg.com/@neutralinojs/lib/-/lib-3.11.0.tgz#939bd687a2ff56fd289a85358cfaa00ef264ba5c"
-  integrity sha512-0qUErz0XIHCg6HS1JqggyBSsscGQbRJ1IbueDXCwKHbuE3CqqDYBYviq+cDUae9FqVfRybWZDGV32/fcCSnDqQ==
-
-dat.gui@^0.7.9:
-  version "0.7.9"
-  resolved "https://registry.yarnpkg.com/dat.gui/-/dat.gui-0.7.9.tgz#860cab06053b028e327820eabdf25a13cf07b17e"
-  integrity sha512-sCNc1OHobc+Erc1HqiswYgHdVNpSJUlk/Hz8vzOCsER7rl+oF/4+v8GXFUyCgtXpoCX6+bnmg07DedLvBLwYKQ==

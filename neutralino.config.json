@@ -16,7 +16,7 @@
     "window": {
       "title": "master tools",
       "minWidth": 660,
-      "minHeight": 800,
+      "minHeight": 860,
       "icon": "/react-src/public/icon.png",
       "center": true
     }

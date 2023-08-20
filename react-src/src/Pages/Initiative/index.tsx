@@ -12,13 +12,18 @@ import {
 
 export const Initiative: React.FC = () => {
   const [newCharacter, setNewCharacter] = useState('')
-  const [characters, setCharacters] = useState<{ name: string, id: string }[]>([])
+  const [characters, setCharacters] = useState<{ name: string; id: string }[]>(
+    []
+  )
   const [selected, setSelected] = useState<number>(0)
   const [turn, setTurn] = useState<number>(1)
 
   const handleSubmit = (event: FormEvent) => {
     event.preventDefault()
-    setCharacters([...characters, { name: newCharacter, id: new Date().toISOString() }])
+    setCharacters([
+      ...characters,
+      { name: newCharacter, id: new Date().toISOString() },
+    ])
     setNewCharacter('')
   }
 
@@ -107,34 +112,38 @@ export const Initiative: React.FC = () => {
                 ref={provided.innerRef}
                 className='flex flex-col gap-2 max-h-[400px] overflow-auto'
               >
-                {characters.length > 0 ? characters.map(({ name, id }, index) => (
-                  <Draggable
-                    draggableId={name}
-                    key={name}
-                    index={index}
-                  >
-                    {(provided2) => (
-                      <li
-                        ref={provided2.innerRef}
-                        {...provided2.draggableProps}
-                        {...provided2.dragHandleProps}
-                        onClick={() => setSelected(index)}
-                        className={`flex cursor-pointer items-center justify-between gap-4 rounded-md p-4 leading-4 transition-colors hover:bg-gray-900 ${
-                          selected === index ? 'bg-slate-800' : ''
-                        }`}
-                      >
-                        <p className='capitalize'>{name}</p>
-                        <IconButton
-                          ariaLabel='Deletar personagem'
-                          onClick={() => deleteCharacter(id)}
+                {characters.length > 0 ? (
+                  characters.map(({ name, id }, index) => (
+                    <Draggable
+                      draggableId={name}
+                      key={name}
+                      index={index}
+                    >
+                      {(provided2) => (
+                        <li
+                          ref={provided2.innerRef}
+                          {...provided2.draggableProps}
+                          {...provided2.dragHandleProps}
+                          onClick={() => setSelected(index)}
+                          className={`flex leading-relaxed cursor-pointer items-center justify-between gap-4 rounded-md p-4 transition-colors hover:bg-gray-900 ${
+                            selected === index ? 'bg-slate-800' : ''
+                          }`}
                         >
-                          <Trash className='text-red-600' />
-                        </IconButton>
-                      </li>
-                    )}
-                  </Draggable>
-                )) : (
-                  <p className='text-center text-sm text-gray-600'>Nenhuma iniciativa</p>
+                          <p className='capitalize'>{name}</p>
+                          <IconButton
+                            ariaLabel='Deletar personagem'
+                            onClick={() => deleteCharacter(id)}
+                          >
+                            <Trash className='text-red-600' />
+                          </IconButton>
+                        </li>
+                      )}
+                    </Draggable>
+                  ))
+                ) : (
+                  <p className='text-center text-sm text-gray-600'>
+                    Nenhuma iniciativa
+                  </p>
                 )}
                 {provided.placeholder}
               </ul>
