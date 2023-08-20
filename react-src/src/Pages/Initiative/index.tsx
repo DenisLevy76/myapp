@@ -57,7 +57,7 @@ export const Initiative: React.FC = () => {
           />
           <div className='mb-8 flex gap-4'>
             <IconButton
-              ariaLabel='Reiniciar iniciativa'
+              ariaLabel='Reiniciar turnos'
               className='rounded bg-red-700 p-3 transition-colors hover:bg-red-600'
               type='button'
               onClick={() => {
